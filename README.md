@@ -30,9 +30,7 @@ A simple task management app built with Django.
 2. Create a new Web Service on Render and connect your repo.
 3. Set the build command to:
    ```bash
-   pip install -r requirements.txt
-   python manage.py migrate
-   python manage.py collectstatic --noinput
+   bash build.sh
    ```
 4. Set the start command to:
    ```bash
