@@ -38,8 +38,8 @@ A simple task management app built with Django.
    ```
 5. Set environment variables on Render:
    - `DEBUG=False`
-   - `DJANGO_ALLOWED_HOSTS` to your Render service domain
-   - `DATABASE_URL` if you add a Postgres database service
+   - `DJANGO_ALLOWED_HOSTS` to your Render service domain (e.g., `yourapp.onrender.com`)
+   - `SECRET_KEY` to a random secret string (generate one at https://djecrety.ir/)
 6. Deploy and visit the Render URL.
 
 ### Notes
