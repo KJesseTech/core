@@ -27,20 +27,26 @@ A simple task management app built with Django.
 ## Deploy to Render
 
 1. Push your project to GitHub.
-2. Create a new Web Service on Render and connect your repo.
-3. Set the build command to:
+2. Create a new **PostgreSQL** database on Render:
+   - Go to Render dashboard → New → PostgreSQL
+   - Choose a name and region
+   - Create the database
+   - Copy the `DATABASE_URL` from the database settings
+3. Create a new **Web Service** on Render and connect your repo.
+4. Set the build command to:
    ```bash
    bash build.sh
    ```
-4. Set the start command to:
+5. Set the start command to:
    ```bash
    gunicorn taskapp.wsgi --log-file -
    ```
-5. Set environment variables on Render:
+6. Set environment variables on Render:
    - `DEBUG=False`
    - `DJANGO_ALLOWED_HOSTS` to your Render service domain (e.g., `yourapp.onrender.com`)
    - `SECRET_KEY` to a random secret string (generate one at https://djecrety.ir/)
-6. Deploy and visit the Render URL.
+   - `DATABASE_URL` to the PostgreSQL connection string from step 2
+7. Deploy and visit the Render URL.
 
 ### Notes
 
