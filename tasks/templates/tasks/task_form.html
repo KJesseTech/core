@@ -1,15 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Task</title>
-</head>
-<body>
-    <h1>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Task</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-    <a href="{% url 'task_list' %}">Back to List</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Edit{% else %}Create{% endif %} Task{% endblock %}
+
+{% block content %}
+    <div class="actions">
+        <div>
+            <h1>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Task</h1>
+        </div>
+        <a href="{% url 'task_list' %}" class="button secondary">Back to List</a>
+    </div>
+
+    <div class="form-card">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-actions">
+                <button type="submit" class="button">Save Task</button>
+                <a href="{% url 'task_list' %}" class="button secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

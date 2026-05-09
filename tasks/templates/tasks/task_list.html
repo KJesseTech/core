@@ -1,20 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Task List</title>
-</head>
-<body>
-    <h1>My Tasks</h1>
-    <a href="{% url 'task_create' %}">Add New Task</a>
-    <ul>
+{% extends 'base.html' %}
+
+{% block title %}Task List{% endblock %}
+
+{% block content %}
+    <div class="actions">
+        <div>
+            <h1>My Tasks</h1>
+            <p>View and manage your task list below.</p>
+        </div>
+        <a href="{% url 'task_create' %}" class="button">Add New Task</a>
+    </div>
+
+    <ul class="task-list">
         {% for task in tasks %}
-        <li>
-            <span style="{% if task.completed %}text-decoration: line-through;{% endif %}">{{ task.title }}</span>
-            <a href="{% url 'task_toggle' task.pk %}">[Toggle]</a>
-            <a href="{% url 'task_update' task.pk %}">[Edit]</a>
-            <a href="{% url 'task_delete' task.pk %}">[Delete]</a>
+        <li class="task-item{% if task.completed %} completed{% endif %}">
+            <div class="task-meta" style="justify-content: flex-start; gap: 12px;">
+                <a href="{% url 'task_toggle' task.pk %}" class="small-button secondary">{% if task.completed %}Undo{% else %}Complete{% endif %}</a>
+                <p class="task-title{% if task.completed %} completed{% endif %}">{{ task.title }}</p>
+            </div>
+            <div class="task-meta">
+                <a href="{% url 'task_update' task.pk %}" class="small-button secondary">Edit</a>
+                <a href="{% url 'task_delete' task.pk %}" class="small-button secondary">Delete</a>
+            </div>
+        </li>
+        {% empty %}
+        <li class="task-item">
+            <p class="task-title">No tasks yet. Add one to get started.</p>
         </li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
